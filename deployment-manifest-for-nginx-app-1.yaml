@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-demo-deployment-1
+  labels:
+    app: nginx-demo-app-1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-demo-app-1
+  template:
+    metadata:
+      labels:
+        app: nginx-demo-app-1
+    spec:
+      containers:
+        # Main application container
+        - name: nginx-container
+          image: <docker-image-url>
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 80
